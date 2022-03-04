@@ -9,33 +9,37 @@ const initState = {
 
 const buildNewCategories = (parentId, categories, category) => {
     let myCategories = [];
-
+aaa
     if(parentId == undefined){
+        // if the new created category dont have parent
+        // return categories array ...categories with the new category data
         return [
             ...categories,
             {
                 _id: category._id,
                 name: category.name,
-                slug: category.slug,
+                slug: category.slug,   >>>>>>> new created category data
                 type: category.type,
                 children: []
             }
         ];
     }
     
-    for(let cat of categories){
+    for(let cat of categories){ // make categories array map
 
-        if(cat._id == parentId){
+        if(cat._id == parentId){ >>> filter categories items if one of old cat === parentid with the new category
             const newCategory = {
                 _id: category._id,
                 name: category.name,
                 slug: category.slug,
-                parentId: category.parentId,
+                parentId: category.parentId, >>>>> make this new categoy with this new category.parentId
                 type: category.type,
                 children: []
             };
-            myCategories.push({
-                ...cat,
+            myCategories.push({ >>> push all categories array in newarray
+                ...cat, >>>> categories items seperate
+                  and update wheeere cat.id === new category.parentId
+                   >>> if parentid not valid in categories aray items make newone {{{{not child}}}}            
                 children: cat.children.length > 0 ? [...cat.children, newCategory] : [newCategory]
             })
         }else{
